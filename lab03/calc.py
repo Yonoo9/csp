@@ -7,11 +7,15 @@ def vc(a, b):
     return a - b
 def mp(a, b):
     return a * b
+def dl(a, b):
+    return a // b
 
 s = sm(a, b)
 v = vc(a, b)
 m = mp(a, b)
+d = dl(a, b)
 
 print(s)
 print(v)
 print(m)
+print(d)
