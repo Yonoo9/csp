@@ -24,3 +24,19 @@ def parse_record(line):
         "temperature": temperature,
         "date": date,
     }
+
+def read_valid(lines):
+    records = []
+
+    for line in lines:
+        if not line.strip():
+            continue
+
+        try:
+            record = parse_record(line)
+        except ValueError:
+            continue
+
+        records.append(record)
+
+    return records
