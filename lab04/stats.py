@@ -40,3 +40,19 @@ def read_valid(lines):
         records.append(record)
 
     return records
+
+def average_by_city(records):
+    total = {}
+    count = {}
+
+    for record in records:
+        city = record["city"]
+        temperature = record["temperature"]
+
+        total[city] = total.get(city, 0.0) + temperature
+        count[city] = count.get(city, 0) + 1
+
+    return {
+        city: round(total[city] / count[city], 1)
+        for city in total
+    }
