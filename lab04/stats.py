@@ -56,3 +56,21 @@ def average_by_city(records):
         city: round(total[city] / count[city], 1)
         for city in total
     }
+
+def warmest_city(records):
+    averages = average_by_city(records)
+
+    if len(averages) == 0:
+        return ""
+
+    best_city = ""
+
+    for city in averages:
+        if best_city == "":
+            best_city = city
+        elif averages[city] > averages[best_city]:
+            best_city = city
+        elif averages[city] == averages[best_city] and city < best_city:
+            best_city = city
+
+    return best_city
