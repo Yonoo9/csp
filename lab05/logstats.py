@@ -1,4 +1,4 @@
-def parse_event(line: str) -> dict:
+def parse_event(line):
     parts = line.split(maxsplit=2)
 
     if len(parts) != 3:
@@ -11,8 +11,11 @@ def parse_event(line: str) -> dict:
     if level not in ["DEBUG", "INFO", "WARNING", "ERROR"]:
         raise ValueError("Неизвестный уровень")
 
-    if not time or not message.strip():
-        raise ValueError("Нет времени или сообщения")
+    if not message.strip():
+        raise ValueError("Нет сообщения")
+
+    if "T" not in time or "-" not in time or ":" not in time:
+        raise ValueError("Неверное время")
 
     return {
         "time": time,
@@ -20,7 +23,8 @@ def parse_event(line: str) -> dict:
         "message": message
     }
 
-def count_levels(lines: list[str]) -> dict:
+
+def count_levels(lines):
     counts = {}
 
     for line in lines:
@@ -40,7 +44,7 @@ def count_levels(lines: list[str]) -> dict:
 
     return counts
 
-def top_errors(lines: list[str], n: int) -> list[list]:
+def top_errors(lines, n):
     errors = {}
 
     for line in lines:
@@ -72,7 +76,7 @@ def top_errors(lines: list[str], n: int) -> list[list]:
 
     return result
 
-def format_report(counts: dict, errors: list[list]) -> str:
+def format_report(counts, errors):
     report = "Отчёт по журналу\n\n"
 
     for level in sorted(counts):
