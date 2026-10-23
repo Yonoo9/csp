@@ -13,9 +13,11 @@ def main():
             if not line.strip():
                 continue
 
+            total += 1
+            
             try:
                 event = parse_event(line)
-                total += 1
+                
 
                 if event["level"] == "ERROR":
                     error_count += 1
