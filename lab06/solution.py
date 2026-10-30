@@ -2,8 +2,10 @@ def count_by_extension(paths):
     result = {}
 
     for path in paths:
-        filename = path.split("/")[-1]
-        extension = filename.rsplit(".", 1)[-1].lower() if "." in filename else ""
+        filename = path.rsplit("/", 1)[-1]
+        parts = filename.rsplit(".", 1)
+        extension = parts[-1].lower() if len(parts) == 2 else ""
+
         result[extension] = result.get(extension, 0) + 1
 
     return result
