@@ -4,9 +4,9 @@ def parse_event(line):
     if len(parts) != 3:
         raise ValueError("Неверный формат строки")
 
-    time = parts[0]
-    level = parts[1]
-    message = parts[2]
+    time = parts[0].strip()
+    level = parts[1].strip()
+    message = parts[2].strip()
 
     if level not in ["DEBUG", "INFO", "WARNING", "ERROR"]:
         raise ValueError("Неизвестный уровень")
