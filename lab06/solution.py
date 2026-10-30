@@ -2,14 +2,19 @@ def count_by_extension(paths):
     result = {}
 
     for path in paths:
-        filename = path.rsplit("/", 1)[-1]
-        parts = filename.rsplit(".", 1)
-        extension = parts[-1].lower() if len(parts) == 2 else ""
+        filename = path.split("/")[-1]
 
-        result[extension] = result.get(extension, 0) + 1
+        if "." in filename:
+            extension = filename.split(".")[-1].lower()
+        else:
+            extension = ""
+
+        if extension in result:
+            result[extension] += 1
+        else:
+            result[extension] = 1
 
     return result
-
 
 def deepest_path(paths):
     if not paths:
